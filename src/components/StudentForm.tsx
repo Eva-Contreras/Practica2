@@ -1,6 +1,7 @@
 
 import {useState} from 'react'
-import {type Student, StudentCard} from '../components/StudentCard'
+import { StudentCard, type Student } from '../components/StudentCard'
+import { useStudents } from '../hooks/useStudents'
 
 export const StudentForm = () => {
     const [name, setName] = useState('')
@@ -11,7 +12,7 @@ export const StudentForm = () => {
     const [age, setAge] = useState(0) 
     const [semester, setSemester] = useState(0) 
     const [email, setEmail] = useState('') 
-    const [students, setStudents] = useState<Student[]>([])
+    const { students, hasError, addStudent, deleteStudent } = useStudents()
      
       const handleCreateStudent = () => {
         const newStudent: Student = {
@@ -25,7 +26,7 @@ export const StudentForm = () => {
           semestre:semester,
           correo:email
         }
-        setStudents([...students, newStudent])
+        addStudent(newStudent)
         setAge(0)
         setCareer('')
         setEmail('')
@@ -34,14 +35,6 @@ export const StudentForm = () => {
         setSemester(0)
         setState('')
         setStudentID('')
-      }
-
-      const handleDeleteStudent = (id: string) => {
-        setStudents((currentStudents) =>
-          currentStudents.filter(
-            (student) => student.id !== id && student.matricula !== id
-          )
-        )
       }
 
   return (
@@ -199,7 +192,7 @@ export const StudentForm = () => {
                 </button>
    
                 <button className="btn btn--primary" type="submit"
-                onClick={handleCreateStudent}>
+                >
                   Guardar estudiante
                 </button>
                 
@@ -207,12 +200,12 @@ export const StudentForm = () => {
             </form>
           </section>
           <section>
-                    {
+                    {hasError ? <p>Error al cargar los estudiantes.</p> :
                       students.map((student) => (
                           <StudentCard
                             key={student.id}
                             student={student}
-                            onDelete={handleDeleteStudent}
+                            onDelete={deleteStudent}
                           /> )
                       )
                   }

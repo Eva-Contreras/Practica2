@@ -3,6 +3,7 @@ import {type Student} from '../components/StudentCard';
 
 export const students:Student[] = [
   {
+    id: '1',
     nombre: "Ana",
     apellido: "Garcia",
     estado: "Activo",
@@ -13,6 +14,7 @@ export const students:Student[] = [
     correo: "ana.garcia@tec.mx"
   },
   {
+    id: '2',
     nombre: "Juan",
     apellido: "Perez",
     estado: "Activo",
@@ -23,6 +25,7 @@ export const students:Student[] = [
     correo: "juan.perez@tec.mx"
   },
   {
+    id:'2',
     nombre: "Juan",
     apellido: "Perez",
     estado: "Activo",
@@ -33,6 +36,7 @@ export const students:Student[] = [
     correo: "juan.perez@tec.mx"
   },
   {
+    id:'3',
     nombre: "Juan",
     apellido: "Perez",
     estado: "Activo",
